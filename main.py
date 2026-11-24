@@ -18,7 +18,10 @@ def main() -> None:
     assert "\n" not in text and "\r" not in text, "pitch must be a single line"
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as f:
-        f.write(text + "\n")
+        # Exactly the pitch and nothing else: no trailing newline, no extra
+        # words — the gate counts the file's characters (1-240) and the
+        # judge reads the sentence as-is.
+        f.write(text)
 
 if __name__ == "__main__":
     main()
